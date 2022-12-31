@@ -1,12 +1,14 @@
 A dns service that can be used to perform DNS rebinding attacks.
 
-When first called for a specific domain the service returns `1.1.1.1` and
-when called a second time it responds with the wanted ip.
+The resolved IPs are represented in hexadecimal notation as shown below.
 
 Usage:
 ```shell
-$ dig 127-0-0-1.custom.domain.com
-  > # resolves to 1.1.1.1
-$ dig 127-0-0-1.custom.domain.com
-  > # resolves to 127.0.0.1
+$ dig 1-7F000001.2-7F000002.custom.domain.com
+  > #1 resolves to 127.0.0.1
+  > #2 resolves to 127.0.0.2
+  > #3 resolves to 127.0.0.2
+  
+$ dig 7F000001.7F000002.custom.domain.com
+  > # randomly resolves to 127.0.0.1 or 127.0.0.2
 ```
