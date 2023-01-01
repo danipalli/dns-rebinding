@@ -8,4 +8,4 @@ COPY . .
 
 ENTRYPOINT [ "python", "./dns-server.py" ]
 
-EXPOSE 53
+EXPOSE 53/udp
