@@ -46,7 +46,9 @@ class DnsResolver:
                     return target_ip_2
 
     def _resolve_randomly(self) -> str:
-        # TODO: add regex check if ip format is valid
+        if self.domain_parts[0].__contains__("-") or self.domain_parts[1].__contains__("-"):
+            raise RuntimeError(f"Domain can not be parsed: {self.domain_parts}")
+
         target_ip_id = random.randint(0, 1)
         return self._hex_to_ip(self.domain_parts[target_ip_id])
 
